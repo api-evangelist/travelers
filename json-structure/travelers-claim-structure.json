@@ -1,0 +1,16 @@
+{
+  "name": "Travelers Insurance Claim",
+  "description": "Structure of a business insurance claim with Travelers",
+  "fields": [
+    {"name": "claim_number", "type": "string", "required": true, "description": "Claim number assigned by Travelers"},
+    {"name": "policy_number", "type": "string", "required": true, "description": "Associated policy number"},
+    {"name": "policy_type", "type": "enum(property|casualty|workers-compensation|commercial-auto|general-liability)", "required": true, "description": "Policy type"},
+    {"name": "status", "type": "enum(open|in-review|settled|closed)", "required": true, "description": "Claim status"},
+    {"name": "loss_date", "type": "date", "required": true, "description": "Date of loss"},
+    {"name": "reported_date", "type": "datetime", "required": false, "description": "Date claim was reported"},
+    {"name": "description", "type": "string", "required": false, "description": "Incident description"},
+    {"name": "claimant", "type": "object(Claimant)", "required": false, "description": "Claimant contact info"},
+    {"name": "adjuster", "type": "object(Adjuster)", "required": false, "description": "Assigned adjuster"},
+    {"name": "total_incurred", "type": "number", "required": false, "description": "Total amount incurred"}
+  ]
+}

@@ -1,0 +1,153 @@
+name: Travelers Vocabulary
+description: Domain vocabulary for Travelers Insurance APIs covering commercial insurance claims, quoting, and policy management
+tags:
+  - Insurance
+  - Property Casualty
+  - Commercial Insurance
+  - Claims
+  - Fintech
+terms:
+  - term: Claim
+    label: Insurance Claim
+    definition: A formal request to Travelers to receive compensation for a covered loss under an insurance policy
+    properties:
+      - claim_number
+      - policy_number
+      - loss_date
+      - status
+
+  - term: Policy
+    label: Insurance Policy
+    definition: A contract between Travelers and an insured organization providing coverage for specified risks in exchange for a premium
+    properties:
+      - policy_number
+      - policy_type
+      - premium
+      - effective_date
+      - expiration_date
+
+  - term: Quote
+    label: Insurance Quote
+    definition: A formal estimate of the premium and coverage terms for a commercial insurance policy
+    properties:
+      - quote_id
+      - premium
+      - status
+      - effective_date
+
+  - term: Premium
+    label: Insurance Premium
+    definition: The periodic payment made by the insured in exchange for insurance coverage
+    related:
+      - Policy
+      - Quote
+
+  - term: Coverage
+    label: Insurance Coverage
+    definition: The scope of protection provided by an insurance policy, including limits, deductibles, and covered perils
+    properties:
+      - type
+      - limit
+      - deductible
+
+  - term: Deductible
+    label: Deductible
+    definition: The amount the insured must pay out-of-pocket before insurance coverage applies to a claim
+    related:
+      - Coverage
+      - Claim
+
+  - term: Claimant
+    label: Claimant
+    definition: The person or organization making a claim under an insurance policy
+    related:
+      - Claim
+      - Policy
+
+  - term: Adjuster
+    label: Claims Adjuster
+    definition: A Travelers representative assigned to investigate and settle an insurance claim
+    related:
+      - Claim
+      - Loss
+
+  - term: Loss
+    label: Insured Loss
+    definition: A covered event or damage that results in a claim being filed with Travelers
+    properties:
+      - loss_date
+      - description
+      - loss_location
+
+  - term: BOP
+    label: Business Owner Policy
+    definition: A commercial insurance package combining property, liability, and business income coverage for small businesses
+    related:
+      - Commercial Lines
+      - Quote
+
+  - term: Commercial Lines
+    label: Commercial Lines
+    definition: Insurance products designed for businesses rather than individuals, including property, casualty, and liability coverage
+    values:
+      - property
+      - casualty
+      - workers-compensation
+      - commercial-auto
+      - general-liability
+
+  - term: Workers Compensation
+    label: Workers Compensation
+    definition: Insurance that covers medical expenses and lost wages for employees injured on the job
+    related:
+      - Commercial Lines
+      - Policy
+
+  - term: Commercial Auto
+    label: Commercial Auto
+    definition: Insurance covering vehicles used for business purposes including trucks, vans, and company cars
+    related:
+      - Commercial Lines
+      - Fleet
+
+  - term: General Liability
+    label: General Liability
+    definition: Insurance protecting businesses against claims of bodily injury, property damage, and personal injury
+    related:
+      - Commercial Lines
+      - BOP
+
+  - term: Indication
+    label: Quote Indication
+    definition: A preliminary, non-binding estimate of insurance premium provided to agents before full underwriting
+    related:
+      - Quote
+      - Bindable Quote
+
+  - term: Bindable Quote
+    label: Bindable Quote
+    definition: A fully underwritten insurance quote that can be immediately converted into an active policy
+    related:
+      - Quote
+      - Policy
+
+  - term: Underwriting
+    label: Underwriting
+    definition: The process of evaluating risk and determining eligibility, terms, and premium for an insurance policy
+    related:
+      - Quote
+      - Policy
+
+  - term: NAICS Code
+    label: NAICS Code
+    definition: North American Industry Classification System code used to categorize a business's industry for insurance underwriting
+    related:
+      - BusinessInfo
+      - Underwriting
+
+  - term: Industry Code
+    label: Industry Classification Code
+    definition: A standardized code identifying the type of business activities, used in commercial insurance quoting
+    related:
+      - NAICS Code
+      - BOP

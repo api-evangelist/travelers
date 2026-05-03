@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.travelers.com/v1/quotes",
+    "headers": {
+      "Authorization": "Bearer YOUR_OAUTH_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "product_type": "business-owners-policy",
+      "business_info": {
+        "name": "Acme Plumbing LLC",
+        "address": "456 Main Street",
+        "city": "Columbus",
+        "state": "OH",
+        "zip": "43215",
+        "industry_code": "238220",
+        "annual_revenue": 750000,
+        "employee_count": 8
+      },
+      "effective_date": "2026-06-01",
+      "coverage_options": {
+        "building_limit": 500000,
+        "business_personal_property_limit": 100000,
+        "general_liability_limit": 1000000
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "quote_id": "QTE-2026-0503-89765",
+        "product_type": "business-owners-policy",
+        "status": "bindable",
+        "premium": 3240.00,
+        "effective_date": "2026-06-01",
+        "expiration_date": "2027-06-01",
+        "coverages": [
+          {
+            "type": "building",
+            "limit": 500000,
+            "deductible": 1000
+          },
+          {
+            "type": "business-personal-property",
+            "limit": 100000,
+            "deductible": 1000
+          },
+          {
+            "type": "general-liability",
+            "limit": 1000000,
+            "deductible": 0
+          }
+        ],
+        "created_at": "2026-05-03T10:30:00Z"
+      }
+    }
+  }
+}

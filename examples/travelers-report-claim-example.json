@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.travelers.com/v1/claims",
+    "headers": {
+      "Authorization": "Bearer YOUR_OAUTH_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "policy_number": "POL-987654321",
+      "policy_type": "commercial-auto",
+      "loss_date": "2026-05-01",
+      "description": "Commercial vehicle collision at highway interchange. Driver uninjured. Vehicle sustained front-end damage.",
+      "loss_location": {
+        "address": "I-90 Eastbound, Mile Marker 142",
+        "city": "Cleveland",
+        "state": "OH",
+        "zip": "44101"
+      },
+      "claimant": {
+        "name": "John Smith",
+        "contact_email": "jsmith@example.com",
+        "contact_phone": "216-555-0100"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "data": {
+        "claim_number": "CLM-2026-0503-001234",
+        "policy_number": "POL-987654321",
+        "policy_type": "commercial-auto",
+        "status": "open",
+        "loss_date": "2026-05-01",
+        "reported_date": "2026-05-03T10:00:00Z",
+        "description": "Commercial vehicle collision at highway interchange. Driver uninjured. Vehicle sustained front-end damage.",
+        "claimant": {
+          "name": "John Smith",
+          "contact_email": "jsmith@example.com",
+          "contact_phone": "216-555-0100"
+        },
+        "adjuster": {
+          "name": "Sarah Johnson",
+          "email": "sjohnson@travelers.com",
+          "phone": "800-555-0200"
+        },
+        "total_incurred": 0.00
+      }
+    }
+  }
+}
