@@ -1,217 +1,355 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Travelers Commercial Insurance Workflow"
-  description: >-
-    Workflow capability for commercial insurance agents, brokers, and
-    enterprise clients integrating with Travelers Insurance. Covers the
-    full commercial insurance lifecycle: obtaining quotes, managing policies,
-    reporting claims, and tracking claim status across property, casualty,
-    workers compensation, and commercial auto lines.
+  label: Travelers Commercial Insurance Workflow
+  description: 'Workflow capability for commercial insurance agents, brokers, and enterprise clients integrating with Travelers
+    Insurance. Covers the full commercial insurance lifecycle: obtaining quotes, managing policies, reporting claims, and
+    tracking claim status across property, casualty, workers compensation, and commercial auto lines.'
   tags:
-    - Insurance
-    - Property Casualty
-    - Claims
-    - Commercial Insurance
-    - Quoting
-    - Policy Management
-    - Fortune 500
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Insurance
+  - Property Casualty
+  - Claims
+  - Commercial Insurance
+  - Quoting
+  - Policy Management
+  - Fortune 500
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TRAVELERS_CLIENT_ID: TRAVELERS_CLIENT_ID
-      TRAVELERS_CLIENT_SECRET: TRAVELERS_CLIENT_SECRET
-
+- namespace: env
+  keys:
+    TRAVELERS_CLIENT_ID: TRAVELERS_CLIENT_ID
+    TRAVELERS_CLIENT_SECRET: TRAVELERS_CLIENT_SECRET
 capability:
   consumes:
-    - import: travelers
-      location: ./shared/travelers.yaml
-
+  - type: http
+    namespace: travelers
+    baseUri: https://api.travelers.com/v1
+    description: Travelers business insurance claims, quoting, and policy APIs.
+    authentication:
+      type: bearer
+      token: '{{TRAVELERS_OAUTH_TOKEN}}'
+    resources:
+    - name: claims
+      path: /claims
+      description: Business insurance claims management
+      operations:
+      - name: list-claims
+        method: GET
+        description: List business insurance claims
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by claim status
+        - name: policy_type
+          in: query
+          type: string
+          required: false
+          description: Filter by policy type
+        - name: start_date
+          in: query
+          type: string
+          required: false
+          description: Filter from date
+        - name: end_date
+          in: query
+          type: string
+          required: false
+          description: Filter to date
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: report-claim
+        method: POST
+        description: Submit a new business insurance claim
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            policy_number: '{{tools.policy_number}}'
+            policy_type: '{{tools.policy_type}}'
+            loss_date: '{{tools.loss_date}}'
+            description: '{{tools.description}}'
+    - name: claims-by-number
+      path: /claims/{claim_number}
+      description: Individual claim operations
+      operations:
+      - name: get-claim
+        method: GET
+        description: Get details of a specific claim
+        inputParameters:
+        - name: claim_number
+          in: path
+          type: string
+          required: true
+          description: Claim number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: quotes
+      path: /quotes
+      description: Commercial insurance quoting
+      operations:
+      - name: request-quote
+        method: POST
+        description: Request a commercial insurance quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            product_type: '{{tools.product_type}}'
+            business_info: '{{tools.business_info}}'
+            effective_date: '{{tools.effective_date}}'
+    - name: quotes-by-id
+      path: /quotes/{quote_id}
+      description: Individual quote retrieval
+      operations:
+      - name: get-quote
+        method: GET
+        description: Retrieve a previously generated quote
+        inputParameters:
+        - name: quote_id
+          in: path
+          type: string
+          required: true
+          description: Quote ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: policies
+      path: /policies
+      description: Policy information
+      operations:
+      - name: list-policies
+        method: GET
+        description: List commercial insurance policies
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by policy status
+        - name: policy_type
+          in: query
+          type: string
+          required: false
+          description: Filter by policy type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: policies-by-number
+      path: /policies/{policy_number}
+      description: Individual policy retrieval
+      operations:
+      - name: get-policy
+        method: GET
+        description: Get details of a specific policy
+        inputParameters:
+        - name: policy_number
+          in: path
+          type: string
+          required: true
+          description: Policy number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: commercial-insurance-api
-      description: "Unified REST API for commercial insurance quoting, policy management, and claims."
-      resources:
-        - path: /v1/quotes
-          name: quotes
-          description: "Commercial insurance quoting"
-          operations:
-            - method: POST
-              name: request-quote
-              description: "Request a commercial lines insurance quote"
-              call: "travelers.request-quote"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-quote
-              description: "Retrieve a previously generated quote"
-              call: "travelers.get-quote"
-              with:
-                quote_id: "rest.quote_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/policies
-          name: policies
-          description: "Commercial insurance policy management"
-          operations:
-            - method: GET
-              name: list-policies
-              description: "List all commercial insurance policies"
-              call: "travelers.list-policies"
-              with:
-                status: "rest.status"
-                policy_type: "rest.policy_type"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-policy
-              description: "Get details of a specific policy"
-              call: "travelers.get-policy"
-              with:
-                policy_number: "rest.policy_number"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/claims
-          name: claims
-          description: "Business insurance claims management"
-          operations:
-            - method: GET
-              name: list-claims
-              description: "List business insurance claims"
-              call: "travelers.list-claims"
-              with:
-                status: "rest.status"
-                policy_type: "rest.policy_type"
-                start_date: "rest.start_date"
-                end_date: "rest.end_date"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: report-claim
-              description: "Submit a new business insurance claim"
-              call: "travelers.report-claim"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-claim
-              description: "Get the status and details of a specific claim"
-              call: "travelers.get-claim"
-              with:
-                claim_number: "rest.claim_number"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: commercial-insurance-mcp
-      transport: http
-      description: "MCP server for AI-assisted commercial insurance quoting and claims management."
-      tools:
-        - name: request-commercial-quote
-          description: "Request a commercial insurance quote for Business Owner Policy or Workers Compensation"
-          hints:
-            readOnly: false
-            openWorld: false
-          call: "travelers.request-quote"
-          with:
-            product_type: "tools.product_type"
-            business_info: "tools.business_info"
-            effective_date: "tools.effective_date"
-            coverage_options: "tools.coverage_options"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-quote
-          description: "Retrieve a previously generated commercial insurance quote"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "travelers.get-quote"
-          with:
-            quote_id: "tools.quote_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-policies
-          description: "List commercial insurance policies for the organization"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "travelers.list-policies"
-          with:
-            status: "tools.status"
-            policy_type: "tools.policy_type"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-policy
-          description: "Get details of a specific commercial insurance policy"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "travelers.get-policy"
-          with:
-            policy_number: "tools.policy_number"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: report-insurance-claim
-          description: "Submit a new business insurance claim to Travelers"
-          hints:
-            readOnly: false
-            openWorld: false
-          call: "travelers.report-claim"
-          with:
-            policy_number: "tools.policy_number"
-            policy_type: "tools.policy_type"
-            loss_date: "tools.loss_date"
-            description: "tools.description"
-            loss_location: "tools.loss_location"
-            claimant: "tools.claimant"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-claim-status
-          description: "Check the status and details of an existing insurance claim"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "travelers.get-claim"
-          with:
-            claim_number: "tools.claim_number"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-claims
-          description: "List business insurance claims with optional status and date filtering"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "travelers.list-claims"
-          with:
-            status: "tools.status"
-            policy_type: "tools.policy_type"
-            start_date: "tools.start_date"
-            end_date: "tools.end_date"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: commercial-insurance-api
+    description: Unified REST API for commercial insurance quoting, policy management, and claims.
+    resources:
+    - path: /v1/quotes
+      name: quotes
+      description: Commercial insurance quoting
+      operations:
+      - method: POST
+        name: request-quote
+        description: Request a commercial lines insurance quote
+        call: travelers.request-quote
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-quote
+        description: Retrieve a previously generated quote
+        call: travelers.get-quote
+        with:
+          quote_id: rest.quote_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/policies
+      name: policies
+      description: Commercial insurance policy management
+      operations:
+      - method: GET
+        name: list-policies
+        description: List all commercial insurance policies
+        call: travelers.list-policies
+        with:
+          status: rest.status
+          policy_type: rest.policy_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-policy
+        description: Get details of a specific policy
+        call: travelers.get-policy
+        with:
+          policy_number: rest.policy_number
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/claims
+      name: claims
+      description: Business insurance claims management
+      operations:
+      - method: GET
+        name: list-claims
+        description: List business insurance claims
+        call: travelers.list-claims
+        with:
+          status: rest.status
+          policy_type: rest.policy_type
+          start_date: rest.start_date
+          end_date: rest.end_date
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: report-claim
+        description: Submit a new business insurance claim
+        call: travelers.report-claim
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-claim
+        description: Get the status and details of a specific claim
+        call: travelers.get-claim
+        with:
+          claim_number: rest.claim_number
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: commercial-insurance-mcp
+    transport: http
+    description: MCP server for AI-assisted commercial insurance quoting and claims management.
+    tools:
+    - name: request-commercial-quote
+      description: Request a commercial insurance quote for Business Owner Policy or Workers Compensation
+      hints:
+        readOnly: false
+        openWorld: false
+      call: travelers.request-quote
+      with:
+        product_type: tools.product_type
+        business_info: tools.business_info
+        effective_date: tools.effective_date
+        coverage_options: tools.coverage_options
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-quote
+      description: Retrieve a previously generated commercial insurance quote
+      hints:
+        readOnly: true
+        openWorld: false
+      call: travelers.get-quote
+      with:
+        quote_id: tools.quote_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-policies
+      description: List commercial insurance policies for the organization
+      hints:
+        readOnly: true
+        openWorld: false
+      call: travelers.list-policies
+      with:
+        status: tools.status
+        policy_type: tools.policy_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-policy
+      description: Get details of a specific commercial insurance policy
+      hints:
+        readOnly: true
+        openWorld: false
+      call: travelers.get-policy
+      with:
+        policy_number: tools.policy_number
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: report-insurance-claim
+      description: Submit a new business insurance claim to Travelers
+      hints:
+        readOnly: false
+        openWorld: false
+      call: travelers.report-claim
+      with:
+        policy_number: tools.policy_number
+        policy_type: tools.policy_type
+        loss_date: tools.loss_date
+        description: tools.description
+        loss_location: tools.loss_location
+        claimant: tools.claimant
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-claim-status
+      description: Check the status and details of an existing insurance claim
+      hints:
+        readOnly: true
+        openWorld: false
+      call: travelers.get-claim
+      with:
+        claim_number: tools.claim_number
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-claims
+      description: List business insurance claims with optional status and date filtering
+      hints:
+        readOnly: true
+        openWorld: false
+      call: travelers.list-claims
+      with:
+        status: tools.status
+        policy_type: tools.policy_type
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.
