@@ -78,6 +78,17 @@ common:
     url: https://developer.travelers.com/s/apis
   - type: Sign Up
     url: https://developer.travelers.com/s/
+  - type: Integrations
+    url: https://piaffinity.travelers.com/affinity/sponsor/partners
+integrations:
+  - name: Car Insurance
+  - name: Home Insurance
+  - name: Renters Insurance
+  - name: Condo Insurance
+  - name: Boat and Yacht Insurance
+  - name: Illustration of Phil LaVallee at Olympics
+  - name: Travelers umbrella in plaza
+  - name: Travelers
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
