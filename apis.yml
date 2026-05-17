@@ -56,7 +56,7 @@ apis:
         url: capabilities/commercial-insurance-workflow.yaml
       - type: Vocabulary
         url: vocabulary/travelers-vocabulary.yml
-      - type: Sign Up
+      - type: SignUp
         url: https://developer.travelers.com/s/
     x-apis:
       - Business Insurance Claim Reporting API
@@ -76,7 +76,7 @@ common:
     url: https://developer.travelers.com/s/
   - type: Documentation
     url: https://developer.travelers.com/s/apis
-  - type: Sign Up
+  - type: SignUp
     url: https://developer.travelers.com/s/
   - type: Integrations
     url: https://piaffinity.travelers.com/affinity/sponsor/partners
