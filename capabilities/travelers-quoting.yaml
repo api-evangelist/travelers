@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Travelers API — Quoting
+  description: 'Travelers API — Quoting. 2 operations. Lead operation: Request Commercial Insurance Quote. Self-contained
+    Naftiko capability covering one Travelers business surface.'
+  tags:
+  - Travelers
+  - Quoting
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRAVELERS_API_KEY: TRAVELERS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: travelers-quoting
+    baseUri: https://api.travelers.com/v1
+    description: Travelers API — Quoting business capability. Self-contained, no shared references.
+    resources:
+    - name: quotes
+      path: /quotes
+      operations:
+      - name: requestquote
+        method: POST
+        description: Request Commercial Insurance Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: quotes-quote_id
+      path: /quotes/{quote_id}
+      operations:
+      - name: getquote
+        method: GET
+        description: Get Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: quote_id
+          in: path
+          type: string
+          description: Quote identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TRAVELERS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: travelers-quoting-rest
+    port: 8080
+    description: REST adapter for Travelers API — Quoting. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/quotes
+      name: quotes
+      description: REST surface for quotes.
+      operations:
+      - method: POST
+        name: requestquote
+        description: Request Commercial Insurance Quote
+        call: travelers-quoting.requestquote
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/quotes/{quote-id}
+      name: quotes-quote-id
+      description: REST surface for quotes-quote_id.
+      operations:
+      - method: GET
+        name: getquote
+        description: Get Quote
+        call: travelers-quoting.getquote
+        with:
+          quote_id: rest.quote_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: travelers-quoting-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Travelers API — Quoting. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: request-commercial-insurance-quote
+      description: Request Commercial Insurance Quote
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: travelers-quoting.requestquote
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-quote
+      description: Get Quote
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: travelers-quoting.getquote
+      with:
+        quote_id: tools.quote_id
+      outputParameters:
+      - type: object
+        mapping: $.
