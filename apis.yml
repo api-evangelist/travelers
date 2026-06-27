@@ -50,7 +50,7 @@ apis:
         url: rules/travelers-rules.yml
       - type: Vocabulary
         url: vocabulary/travelers-vocabulary.yml
-      - type: SignUp
+      - type: Signup
         url: https://developer.travelers.com/s/
     x-apis:
       - Business Insurance Claim Reporting API
@@ -70,11 +70,11 @@ common:
     url: https://www.linkedin.com/company/travelers
   - type: Website
     url: https://www.travelers.com/
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.travelers.com/s/
   - type: Documentation
     url: https://developer.travelers.com/s/apis
-  - type: SignUp
+  - type: Signup
     url: https://developer.travelers.com/s/
   - type: Integrations
     url: https://piaffinity.travelers.com/affinity/sponsor/partners
