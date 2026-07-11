@@ -64,6 +64,8 @@ apis:
       - general-liability
       - business-owners-policy
 common:
+  - type: DomainSecurity
+    url: security/travelers-domain-security.yml
   - type: Authentication
     url: authentication/travelers-authentication.yml
   - type: OAuthScopes
