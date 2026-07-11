@@ -64,6 +64,10 @@ apis:
       - general-liability
       - business-owners-policy
 common:
+  - type: Authentication
+    url: authentication/travelers-authentication.yml
+  - type: OAuthScopes
+    url: scopes/travelers-scopes.yml
   - type: GitHubOrganization
     url: https://github.com/Travelers
   - type: LinkedIn

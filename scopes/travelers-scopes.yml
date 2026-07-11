@@ -1,0 +1,40 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/travelers-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/travelers-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.travelers.com/oauth/token
+scopes:
+- scope: claims:read
+  description: Read claim data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/travelers-openapi.yml
+- scope: claims:write
+  description: Submit and update claims
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/travelers-openapi.yml
+- scope: policies:read
+  description: Read policy data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/travelers-openapi.yml
+- scope: quotes:read
+  description: Read quote data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/travelers-openapi.yml
+- scope: quotes:write
+  description: Request quotes
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/travelers-openapi.yml
