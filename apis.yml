@@ -64,6 +64,8 @@ apis:
       - general-liability
       - business-owners-policy
 common:
+  - type: AgenticAccess
+    url: agentic-access/travelers-agentic-access.yml
   - type: DomainSecurity
     url: security/travelers-domain-security.yml
   - type: Authentication
