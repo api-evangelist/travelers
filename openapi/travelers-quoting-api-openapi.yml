@@ -1,0 +1,190 @@
+openapi: 3.0.3
+info:
+  title: Travelers Claims Quoting API
+  description: Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.
+  version: v1.0.0
+  contact:
+    name: Travelers Developer Portal
+    url: https://developer.travelers.com/s/
+  x-logo:
+    url: https://www.travelers.com/logo.png
+servers:
+- url: https://api.travelers.com/v1
+  description: Travelers API Production Server
+security:
+- OAuth2: []
+tags:
+- name: Quoting
+  description: Commercial insurance quoting and policy pricing
+paths:
+  /quotes:
+    post:
+      operationId: requestQuote
+      summary: Request Commercial Insurance Quote
+      description: Requests a commercial insurance quote for Business Owner Policies or Workers Compensation coverage. Returns indications or fully bindable quotes for eligible customers.
+      tags:
+      - Quoting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Quote generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /quotes/{quote_id}:
+    get:
+      operationId: getQuote
+      summary: Get Quote
+      description: Returns a previously generated insurance quote by ID.
+      tags:
+      - Quoting
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Quote identifier
+      responses:
+        '200':
+          description: Successful response with quote details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    QuoteRequest:
+      type: object
+      required:
+      - product_type
+      - business_info
+      properties:
+        product_type:
+          type: string
+          enum:
+          - business-owners-policy
+          - workers-compensation
+        business_info:
+          $ref: '#/components/schemas/BusinessInfo'
+        effective_date:
+          type: string
+          format: date
+        coverage_options:
+          type: object
+          additionalProperties: true
+    QuoteResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Quote'
+    Quote:
+      type: object
+      properties:
+        quote_id:
+          type: string
+        product_type:
+          type: string
+        status:
+          type: string
+          enum:
+          - indication
+          - bindable
+          - declined
+        premium:
+          type: number
+          format: float
+        effective_date:
+          type: string
+          format: date
+        expiration_date:
+          type: string
+          format: date
+        coverages:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              limit:
+                type: number
+              deductible:
+                type: number
+        created_at:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+    BusinessInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        industry_code:
+          type: string
+        annual_revenue:
+          type: number
+          format: float
+        employee_count:
+          type: integer
+  responses:
+    BadRequest:
+      description: Bad request - invalid input data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.travelers.com/oauth/token
+          scopes:
+            claims:read: Read claim data
+            claims:write: Submit and update claims
+            quotes:read: Read quote data
+            quotes:write: Request quotes
+            policies:read: Read policy data
