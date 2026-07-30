@@ -5,9 +5,22 @@ description: >-
   Through their developer portal, Travelers provides APIs for business insurance claim reporting, commercial quoting,
   and policy management to enable agents, brokers, and partners to programmatically manage insurance workflows.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/travelers.png
 tags:
   - Insurance
   - Property Casualty
@@ -20,49 +33,78 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/travelers/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: travelers:travelers
-    name: Travelers API
-    description: >-
-      Business insurance APIs for claim reporting, commercial lines quoting, and policy management. Enables agents,
-      brokers, and commercial clients to programmatically manage insurance workflows across property, casualty, workers
-      compensation, and commercial auto lines.
-    humanURL: https://developer.travelers.com/s/
-    baseURL: https://api.travelers.com/v1
-    tags:
-      - Insurance
-      - Property Casualty
-      - Commercial Insurance
-      - Claims
-      - Quoting
-      - Fortune 500
-    properties:
-      - type: Documentation
-        url: https://developer.travelers.com/s/apis
-      - type: OpenAPI
-        url: openapi/travelers-openapi.yml
-      - type: JSONSchema
-        url: json-schema/travelers-claim-schema.json
-      - type: JSONStructure
-        url: json-structure/travelers-claim-structure.json
-      - type: JSONLD
-        url: json-ld/travelers-context.jsonld
-      - type: SpectralRules
-        url: rules/travelers-rules.yml
-      - type: Vocabulary
-        url: vocabulary/travelers-vocabulary.yml
-      - type: Signup
-        url: https://developer.travelers.com/s/
-    x-apis:
-      - Business Insurance Claim Reporting API
-      - Commercial Quoting API
-      - Policy Management API
-    x-policy-types:
-      - property
-      - casualty
-      - workers-compensation
-      - commercial-auto
-      - general-liability
-      - business-owners-policy
+- aid: travelers:travelers-claims-api
+  name: Travelers Claims API
+  description: Business insurance claim reporting and management
+  humanURL: https://developer.travelers.com/s/
+  baseURL: https://api.travelers.com/v1
+  tags:
+  - Claims
+  properties:
+  - type: OpenAPI
+    url: openapi/travelers-claims-api-openapi.yml
+  - type: Documentation
+    url: https://developer.travelers.com/s/apis
+  - type: JSONSchema
+    url: json-schema/travelers-claim-schema.json
+  - type: JSONStructure
+    url: json-structure/travelers-claim-structure.json
+  - type: JSONLD
+    url: json-ld/travelers-context.jsonld
+  - type: SpectralRules
+    url: rules/travelers-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelers-vocabulary.yml
+  - type: Signup
+    url: https://developer.travelers.com/s/
+- aid: travelers:travelers-policies-api
+  name: Travelers Policies API
+  description: Policy information and management
+  humanURL: https://developer.travelers.com/s/
+  baseURL: https://api.travelers.com/v1
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/travelers-policies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.travelers.com/s/apis
+  - type: JSONSchema
+    url: json-schema/travelers-claim-schema.json
+  - type: JSONStructure
+    url: json-structure/travelers-claim-structure.json
+  - type: JSONLD
+    url: json-ld/travelers-context.jsonld
+  - type: SpectralRules
+    url: rules/travelers-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelers-vocabulary.yml
+  - type: Signup
+    url: https://developer.travelers.com/s/
+- aid: travelers:travelers-quoting-api
+  name: Travelers Quoting API
+  description: Commercial insurance quoting and policy pricing
+  humanURL: https://developer.travelers.com/s/
+  baseURL: https://api.travelers.com/v1
+  tags:
+  - Quoting
+  properties:
+  - type: OpenAPI
+    url: openapi/travelers-quoting-api-openapi.yml
+  - type: Documentation
+    url: https://developer.travelers.com/s/apis
+  - type: JSONSchema
+    url: json-schema/travelers-claim-schema.json
+  - type: JSONStructure
+    url: json-structure/travelers-claim-structure.json
+  - type: JSONLD
+    url: json-ld/travelers-context.jsonld
+  - type: SpectralRules
+    url: rules/travelers-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelers-vocabulary.yml
+  - type: Signup
+    url: https://developer.travelers.com/s/
 common:
   - type: AgenticAccess
     url: agentic-access/travelers-agentic-access.yml
