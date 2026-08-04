@@ -1,0 +1,18 @@
+{
+  "provider": "travelers",
+  "sources": [
+    "travelers-claims-api-openapi.yml",
+    "travelers-policies-api-openapi.yml",
+    "travelers-quoting-api-openapi.yml"
+  ],
+  "outputs": [
+    "travelers-claims-api-openapi.yml",
+    "travelers-policies-api-openapi.yml",
+    "travelers-quoting-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
