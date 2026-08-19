@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Travelers Claims API",
+    "version": "v1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.travelers.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Claims",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Claims",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelers.com/v1/claims",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by claim status"
+              },
+              {
+                "name": "policy_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by insurance policy type"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter claims from this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter claims to this date (YYYY-MM-DD)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of claims to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of business insurance claims for the authenticated organization, filterable by status, policy type, and date range."
+        },
+        {
+          "info": {
+            "name": "Report Claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelers.com/v1/claims",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a new business insurance claim report to Travelers. Supports property, casualty, workers compensation, and commercial auto claims."
+        },
+        {
+          "info": {
+            "name": "Get Claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelers.com/v1/claims/:claim_number",
+            "params": [
+              {
+                "name": "claim_number",
+                "value": "",
+                "type": "path",
+                "description": "The claim number assigned by Travelers"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific insurance claim by claim number."
+        },
+        {
+          "info": {
+            "name": "Upload Claim Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelers.com/v1/claims/:claim_number/documents",
+            "params": [
+              {
+                "name": "claim_number",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "document_type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads supporting documentation for an existing claim, such as photos, police reports, or medical records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

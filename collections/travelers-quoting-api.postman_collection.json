@@ -1,0 +1,398 @@
+{
+  "item": [
+    {
+      "id": "2ea9c86d-206d-45c7-bd83-1fa14e595323",
+      "name": "Quoting",
+      "description": {
+        "content": "Commercial insurance quoting and policy pricing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bee1a63f-f85e-4097-b878-0e0350207bbc",
+          "name": "Request Commercial Insurance Quote",
+          "request": {
+            "name": "Request Commercial Insurance Quote",
+            "description": {
+              "content": "Requests a commercial insurance quote for Business Owner Policies or Workers Compensation coverage. Returns indications or fully bindable quotes for eligible customers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_type\": \"<string>\",\n  \"business_info\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"industry_code\": \"<string>\",\n    \"annual_revenue\": \"<float>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"effective_date\": \"<date>\",\n  \"coverage_options\": {\n    \"key_0\": 8632\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98e61cc6-65c3-48fe-9884-0c715dc410b0",
+              "name": "Quote generated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"<string>\",\n  \"business_info\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"industry_code\": \"<string>\",\n    \"annual_revenue\": \"<float>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"effective_date\": \"<date>\",\n  \"coverage_options\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"quote_id\": \"string\",\n    \"product_type\": \"string\",\n    \"status\": \"declined\",\n    \"premium\": 5608.094091777637,\n    \"effective_date\": \"2003-01-25\",\n    \"expiration_date\": \"1974-12-09\",\n    \"coverages\": [\n      {\n        \"type\": \"string\",\n        \"limit\": 4518.036759523751,\n        \"deductible\": 811.8322661482291\n      },\n      {\n        \"type\": \"string\",\n        \"limit\": 5678.435571182904,\n        \"deductible\": 8446.20001466912\n      }\n    ],\n    \"created_at\": \"1953-09-01T05:38:22.762Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3c35faa-3646-4985-a440-97a50814a267",
+              "name": "Bad request - invalid input data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"<string>\",\n  \"business_info\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"industry_code\": \"<string>\",\n    \"annual_revenue\": \"<float>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"effective_date\": \"<date>\",\n  \"coverage_options\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0014f238-55c8-40f5-b4dd-5bfaf21360d7",
+              "name": "Unprocessable entity - validation errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_type\": \"<string>\",\n  \"business_info\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"industry_code\": \"<string>\",\n    \"annual_revenue\": \"<float>\",\n    \"employee_count\": \"<integer>\"\n  },\n  \"effective_date\": \"<date>\",\n  \"coverage_options\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d5de158-d147-4ab6-819c-6440d8ebac0b",
+          "name": "Get Quote",
+          "request": {
+            "name": "Get Quote",
+            "description": {
+              "content": "Returns a previously generated insurance quote by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes",
+                ":quote_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quote_id",
+                  "description": "(Required) Quote identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ab0d846-539e-49c2-9d02-165dffc8943d",
+              "name": "Successful response with quote details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quote_id",
+                      "description": "(Required) Quote identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"quote_id\": \"string\",\n    \"product_type\": \"string\",\n    \"status\": \"indication\",\n    \"premium\": 2162.820766848813,\n    \"effective_date\": \"1949-02-28\",\n    \"expiration_date\": \"1988-08-28\",\n    \"coverages\": [\n      {\n        \"type\": \"string\",\n        \"limit\": 4694.27626600944,\n        \"deductible\": 8842.262126261141\n      },\n      {\n        \"type\": \"string\",\n        \"limit\": 8783.598808072204,\n        \"deductible\": 8240.819727187767\n      }\n    ],\n    \"created_at\": \"1962-01-14T05:31:26.895Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "800b1d6c-6ca2-4ea9-b701-3aa7a2392675",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quote_id",
+                      "description": "(Required) Quote identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelers.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "claims:read claims:write quotes:read quotes:write policies:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.travelers.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bfee51fe-38b8-4da7-b649-3c68c2912d41",
+    "name": "Travelers Claims Quoting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.\n\nContact Support:\n Name: Travelers Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

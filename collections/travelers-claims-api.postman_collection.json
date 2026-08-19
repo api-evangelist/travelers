@@ -1,0 +1,883 @@
+{
+  "item": [
+    {
+      "id": "77bfebf4-ee0a-4f96-b77a-5620d8724986",
+      "name": "Claims",
+      "description": {
+        "content": "Business insurance claim reporting and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a99980b6-9301-4542-b67a-541bf9413ab9",
+          "name": "List Claims",
+          "request": {
+            "name": "List Claims",
+            "description": {
+              "content": "Returns a list of business insurance claims for the authenticated organization, filterable by status, policy type, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "claims"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by claim status"
+                },
+                {
+                  "disabled": false,
+                  "key": "policy_type",
+                  "value": "<string>",
+                  "description": "Filter by insurance policy type"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Filter claims from this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "Filter claims to this date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of claims to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5319a9a9-f39d-400c-b43e-7f9ea258229b",
+              "name": "Successful response with claim list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"claim_number\": \"string\",\n      \"policy_number\": \"string\",\n      \"policy_type\": \"string\",\n      \"status\": \"open\",\n      \"loss_date\": \"2020-05-21\",\n      \"reported_date\": \"2001-01-08T18:42:40.948Z\",\n      \"description\": \"string\",\n      \"claimant\": {\n        \"name\": \"string\",\n        \"contact_email\": \"nPSm@BtOuI.dx\",\n        \"contact_phone\": \"string\"\n      },\n      \"adjuster\": {\n        \"name\": \"string\",\n        \"email\": \"wJvohhb7NESG@psTYMhUAhGCvuCxJf.nbt\",\n        \"phone\": \"string\"\n      },\n      \"total_incurred\": 9770.209356539175\n    },\n    {\n      \"claim_number\": \"string\",\n      \"policy_number\": \"string\",\n      \"policy_type\": \"string\",\n      \"status\": \"settled\",\n      \"loss_date\": \"1994-09-09\",\n      \"reported_date\": \"2008-06-15T12:18:59.760Z\",\n      \"description\": \"string\",\n      \"claimant\": {\n        \"name\": \"string\",\n        \"contact_email\": \"a62@MuScJJrMGgA.knoo\",\n        \"contact_phone\": \"string\"\n      },\n      \"adjuster\": {\n        \"name\": \"string\",\n        \"email\": \"rbu1nwi6BuQ@AlVOdwwgJVhqexrGVFUYpbj.xiva\",\n        \"phone\": \"string\"\n      },\n      \"total_incurred\": 25.97548253441495\n    }\n  ],\n  \"total\": 6588,\n  \"page\": 6429,\n  \"limit\": 4334\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84acceeb-b5e9-4bdc-8c7c-bb275e14888d",
+              "name": "Unauthorized - invalid or missing credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67bb1f65-3fca-4c2a-807e-84675c4c6401",
+          "name": "Report Claim",
+          "request": {
+            "name": "Report Claim",
+            "description": {
+              "content": "Submits a new business insurance claim report to Travelers. Supports property, casualty, workers compensation, and commercial auto claims.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "claims"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_number\": \"<string>\",\n  \"loss_date\": \"<date>\",\n  \"description\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"loss_location\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"claimant\": {\n    \"name\": \"<string>\",\n    \"contact_email\": \"<email>\",\n    \"contact_phone\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44e90bb2-744c-4b64-952d-6f9e9f33ff8c",
+              "name": "Claim submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_number\": \"<string>\",\n  \"loss_date\": \"<date>\",\n  \"description\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"loss_location\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"claimant\": {\n    \"name\": \"<string>\",\n    \"contact_email\": \"<email>\",\n    \"contact_phone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"claim_number\": \"string\",\n    \"policy_number\": \"string\",\n    \"policy_type\": \"string\",\n    \"status\": \"closed\",\n    \"loss_date\": \"2016-01-08\",\n    \"reported_date\": \"1956-04-07T01:13:54.189Z\",\n    \"description\": \"string\",\n    \"claimant\": {\n      \"name\": \"<string>\",\n      \"contact_email\": \"<email>\",\n      \"contact_phone\": \"<string>\"\n    },\n    \"adjuster\": {\n      \"name\": \"string\",\n      \"email\": \"UCKSZdxYgYVB@HgHKvQ.pb\",\n      \"phone\": \"string\"\n    },\n    \"total_incurred\": 8122.677511667927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89c14da3-defe-441f-b017-55110c0a7f60",
+              "name": "Bad request - invalid input data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_number\": \"<string>\",\n  \"loss_date\": \"<date>\",\n  \"description\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"loss_location\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"claimant\": {\n    \"name\": \"<string>\",\n    \"contact_email\": \"<email>\",\n    \"contact_phone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f94bf1ae-0fc9-4dc4-a35c-8286ed88a631",
+              "name": "Unprocessable entity - validation errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_number\": \"<string>\",\n  \"loss_date\": \"<date>\",\n  \"description\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"loss_location\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"claimant\": {\n    \"name\": \"<string>\",\n    \"contact_email\": \"<email>\",\n    \"contact_phone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97b627ce-de51-4d19-828f-b7c6d821ba88",
+          "name": "Get Claim",
+          "request": {
+            "name": "Get Claim",
+            "description": {
+              "content": "Returns details of a specific insurance claim by claim number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "claims",
+                ":claim_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "claim_number",
+                  "description": "(Required) The claim number assigned by Travelers"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3c12868-1823-4420-90eb-b461fa96c0b7",
+              "name": "Successful response with claim details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims",
+                    ":claim_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_number",
+                      "description": "(Required) The claim number assigned by Travelers"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"claim_number\": \"string\",\n    \"policy_number\": \"string\",\n    \"policy_type\": \"string\",\n    \"status\": \"closed\",\n    \"loss_date\": \"2016-01-08\",\n    \"reported_date\": \"1956-04-07T01:13:54.189Z\",\n    \"description\": \"string\",\n    \"claimant\": {\n      \"name\": \"<string>\",\n      \"contact_email\": \"<email>\",\n      \"contact_phone\": \"<string>\"\n    },\n    \"adjuster\": {\n      \"name\": \"string\",\n      \"email\": \"UCKSZdxYgYVB@HgHKvQ.pb\",\n      \"phone\": \"string\"\n    },\n    \"total_incurred\": 8122.677511667927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e159c372-afca-4cf5-9234-e3dd906ce494",
+              "name": "Unauthorized - invalid or missing credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims",
+                    ":claim_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_number",
+                      "description": "(Required) The claim number assigned by Travelers"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6717c11e-7924-4bb6-9dad-d85aa6bcb9e6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims",
+                    ":claim_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_number",
+                      "description": "(Required) The claim number assigned by Travelers"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d2ab0a9-c1a4-4b56-b451-140cb083ff8e",
+          "name": "Upload Claim Document",
+          "request": {
+            "name": "Upload Claim Document",
+            "description": {
+              "content": "Uploads supporting documentation for an existing claim, such as photos, police reports, or medical records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "claims",
+                ":claim_number",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "claim_number",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "document_type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of photo,police-report,medical-record,invoice,other)"
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2deba87d-e256-442b-8edc-3225de186e17",
+              "name": "Document uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims",
+                    ":claim_number",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of photo,police-report,medical-record,invoice,other)",
+                        "type": "text/plain"
+                      },
+                      "key": "document_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"document_type\": \"string\",\n    \"filename\": \"string\",\n    \"uploaded_at\": \"1949-07-30T05:59:32.710Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34e9d18f-05dc-4327-bd2d-d7cccab031b5",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "claims",
+                    ":claim_number",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "claim_number",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of photo,police-report,medical-record,invoice,other)",
+                        "type": "text/plain"
+                      },
+                      "key": "document_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelers.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "claims:read claims:write quotes:read quotes:write policies:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.travelers.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef77e2e5-c6b2-4e07-b0ab-485df3a550da",
+    "name": "Travelers Claims API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.\n\nContact Support:\n Name: Travelers Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}

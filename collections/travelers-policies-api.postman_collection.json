@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "879ef14f-e889-4b86-811b-18c055a5ba9c",
+      "name": "Policies",
+      "description": {
+        "content": "Policy information and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be19c075-11b8-45ab-aef9-8312acd5d5dc",
+          "name": "List Policies",
+          "request": {
+            "name": "List Policies",
+            "description": {
+              "content": "Returns a list of commercial insurance policies for the authenticated organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by policy status"
+                },
+                {
+                  "disabled": false,
+                  "key": "policy_type",
+                  "value": "<string>",
+                  "description": "Filter by policy type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e75260a5-3a2f-46cd-9935-cab76b9e7ef4",
+              "name": "Successful response with policy list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"policy_number\": \"string\",\n      \"product_type\": \"string\",\n      \"status\": \"pending\",\n      \"insured_name\": \"string\",\n      \"effective_date\": \"2002-04-09\",\n      \"expiration_date\": \"2026-02-01\",\n      \"premium\": 1199.412462354238,\n      \"coverages\": [\n        {\n          \"type\": \"string\",\n          \"limit\": 372.2401939807807,\n          \"deductible\": 2045.0483050921475\n        },\n        {\n          \"type\": \"string\",\n          \"limit\": 1378.096713411212,\n          \"deductible\": 8549.776710021428\n        }\n      ]\n    },\n    {\n      \"policy_number\": \"string\",\n      \"product_type\": \"string\",\n      \"status\": \"active\",\n      \"insured_name\": \"string\",\n      \"effective_date\": \"1992-09-16\",\n      \"expiration_date\": \"2012-01-02\",\n      \"premium\": 2695.52597202789,\n      \"coverages\": [\n        {\n          \"type\": \"string\",\n          \"limit\": 7036.2560054076,\n          \"deductible\": 2333.677117062064\n        },\n        {\n          \"type\": \"string\",\n          \"limit\": 9674.161005650618,\n          \"deductible\": 5288.55631889096\n        }\n      ]\n    }\n  ],\n  \"total\": 9096\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0eac2aaf-bbda-42c3-932c-bcf21671e90a",
+              "name": "Unauthorized - invalid or missing credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75ed6970-9baf-4c8e-8979-42bc40a1b350",
+          "name": "Get Policy",
+          "request": {
+            "name": "Get Policy",
+            "description": {
+              "content": "Returns details of a specific insurance policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_number",
+                  "description": "(Required) The policy number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79ce6154-579e-43f3-b86a-44998bd0d5fa",
+              "name": "Successful response with policy details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_number",
+                      "description": "(Required) The policy number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"policy_number\": \"string\",\n    \"product_type\": \"string\",\n    \"status\": \"expired\",\n    \"insured_name\": \"string\",\n    \"effective_date\": \"1995-04-11\",\n    \"expiration_date\": \"1973-12-12\",\n    \"premium\": 4632.84280665523,\n    \"coverages\": [\n      {\n        \"type\": \"string\",\n        \"limit\": 3541.4173559012697,\n        \"deductible\": 7406.3843917823215\n      },\n      {\n        \"type\": \"string\",\n        \"limit\": 6753.614685463572,\n        \"deductible\": 2817.8064094631504\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b1a16b4-67ac-4a8f-a8fb-a5cbb1eec536",
+              "name": "Unauthorized - invalid or missing credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_number",
+                      "description": "(Required) The policy number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ac9e80b-e52b-427f-aca8-b9c2dad2fdf2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_number",
+                      "description": "(Required) The policy number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelers.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "claims:read claims:write quotes:read quotes:write policies:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.travelers.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "59b40c88-9d6d-4f26-9365-dec4479d8c05",
+    "name": "Travelers Claims Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.\n\nContact Support:\n Name: Travelers Developer Portal",
+      "type": "text/plain"
+    }
+  }
+}
