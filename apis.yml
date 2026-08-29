@@ -118,6 +118,9 @@ apis:
   - type: Signup
     url: https://developer.travelers.com/s/
 common:
+  - type: CapabilityMap
+    url: capabilities/travelers-capability-edges.yml
+    name: Travelers Business Capability Map
   - type: AgenticAccess
     url: agentic-access/travelers-agentic-access.yml
   - type: DomainSecurity
