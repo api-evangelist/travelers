@@ -5,6 +5,18 @@ description: >-
   Through their developer portal, Travelers provides APIs for business insurance claim reporting, commercial quoting,
   and policy management to enable agents, brokers, and partners to programmatically manage insurance workflows.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
