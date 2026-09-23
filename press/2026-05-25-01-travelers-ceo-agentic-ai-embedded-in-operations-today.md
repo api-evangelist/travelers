@@ -1,7 +1,9 @@
 ---
 title: 'Travelers CEO: Agentic AI Embedded in Operations Today ...'
 url: https://news.ambest.com/newscontent.aspx?AltSrc=23&RefNum=272105
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Travelers Cos." press release artificial intelligence'
 position: 1
 source: serpapi-google

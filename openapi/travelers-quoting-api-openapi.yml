@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Travelers Claims Quoting API
+  title: Travelers Quoting API
   description: Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.
   version: v1.0.0
   contact:
@@ -66,30 +66,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    QuoteRequest:
-      type: object
-      required:
-      - product_type
-      - business_info
-      properties:
-        product_type:
-          type: string
-          enum:
-          - business-owners-policy
-          - workers-compensation
-        business_info:
-          $ref: '#/components/schemas/BusinessInfo'
-        effective_date:
-          type: string
-          format: date
-        coverage_options:
-          type: object
-          additionalProperties: true
-    QuoteResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Quote'
     Quote:
       type: object
       properties:
@@ -126,17 +102,30 @@ components:
         created_at:
           type: string
           format: date-time
-    ErrorResponse:
+    QuoteResponse:
       type: object
       properties:
-        error:
+        data:
+          $ref: '#/components/schemas/Quote'
+    QuoteRequest:
+      type: object
+      required:
+      - product_type
+      - business_info
+      properties:
+        product_type:
           type: string
-        code:
+          enum:
+          - business-owners-policy
+          - workers-compensation
+        business_info:
+          $ref: '#/components/schemas/BusinessInfo'
+        effective_date:
           type: string
-        details:
-          type: array
-          items:
-            type: string
+          format: date
+        coverage_options:
+          type: object
+          additionalProperties: true
     BusinessInfo:
       type: object
       properties:
@@ -157,6 +146,17 @@ components:
           format: float
         employee_count:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
   responses:
     BadRequest:
       description: Bad request - invalid input data
@@ -164,14 +164,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    UnprocessableEntity:
+      description: Unprocessable entity - validation errors
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation errors
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Travelers Claims Policies API
+  title: Travelers Policies API
   description: Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.
   version: v1.0.0
   contact:
@@ -78,31 +78,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PolicyListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Policy'
-        total:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
-    PolicyResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Policy'
     Policy:
       type: object
       properties:
@@ -139,6 +114,31 @@ components:
                 type: number
               deductible:
                 type: number
+    PolicyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Policy'
+    PolicyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        total:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing credentials

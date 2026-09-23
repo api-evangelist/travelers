@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Travelers Claims API
   description: Travelers provides APIs for business insurance claim reporting, commercial lines quoting, and policy management. These APIs enable agents, brokers, and commercial clients to programmatically manage insurance workflows including submitting claims, obtaining quotes, and managing policies across property, casualty, workers compensation, and commercial auto lines.
@@ -170,11 +170,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ClaimResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Claim'
     ClaimListResponse:
       type: object
       properties:
@@ -188,6 +183,26 @@ components:
           type: integer
         limit:
           type: integer
+    DocumentResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            document_type:
+              type: string
+            filename:
+              type: string
+            uploaded_at:
+              type: string
+              format: date-time
+    ClaimResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Claim'
     ClaimRequest:
       type: object
       required:
@@ -224,27 +239,6 @@ components:
               type: string
         claimant:
           $ref: '#/components/schemas/Claimant'
-    Adjuster:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
     Claim:
       type: object
       properties:
@@ -276,6 +270,16 @@ components:
         total_incurred:
           type: number
           format: float
+    Adjuster:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
     Claimant:
       type: object
       properties:
@@ -286,24 +290,26 @@ components:
           format: email
         contact_phone:
           type: string
-    DocumentResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            document_type:
-              type: string
-            filename:
-              type: string
-            uploaded_at:
-              type: string
-              format: date-time
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
   responses:
     BadRequest:
       description: Bad request - invalid input data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation errors
       content:
         application/json:
           schema:
@@ -316,12 +322,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation errors
       content:
         application/json:
           schema:
