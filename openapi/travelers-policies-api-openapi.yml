@@ -78,6 +78,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    PolicyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        total:
+          type: integer
     Policy:
       type: object
       properties:
@@ -119,15 +128,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/Policy'
-    PolicyListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Policy'
-        total:
-          type: integer
     ErrorResponse:
       type: object
       properties:

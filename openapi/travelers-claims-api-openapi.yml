@@ -170,19 +170,16 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ClaimListResponse:
+    Claimant:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Claim'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
+        name:
+          type: string
+        contact_email:
+          type: string
+          format: email
+        contact_phone:
+          type: string
     DocumentResponse:
       type: object
       properties:
@@ -198,11 +195,47 @@ components:
             uploaded_at:
               type: string
               format: date-time
-    ClaimResponse:
+    Adjuster:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Claim'
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+    Claim:
+      type: object
+      properties:
+        claim_number:
+          type: string
+        policy_number:
+          type: string
+        policy_type:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - in-review
+          - settled
+          - closed
+        loss_date:
+          type: string
+          format: date
+        reported_date:
+          type: string
+          format: date-time
+        description:
+          type: string
+        claimant:
+          $ref: '#/components/schemas/Claimant'
+        adjuster:
+          $ref: '#/components/schemas/Adjuster'
+        total_incurred:
+          type: number
+          format: float
     ClaimRequest:
       type: object
       required:
@@ -239,57 +272,24 @@ components:
               type: string
         claimant:
           $ref: '#/components/schemas/Claimant'
-    Claim:
+    ClaimListResponse:
       type: object
       properties:
-        claim_number:
-          type: string
-        policy_number:
-          type: string
-        policy_type:
-          type: string
-        status:
-          type: string
-          enum:
-          - open
-          - in-review
-          - settled
-          - closed
-        loss_date:
-          type: string
-          format: date
-        reported_date:
-          type: string
-          format: date-time
-        description:
-          type: string
-        claimant:
-          $ref: '#/components/schemas/Claimant'
-        adjuster:
-          $ref: '#/components/schemas/Adjuster'
-        total_incurred:
-          type: number
-          format: float
-    Adjuster:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Claim'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    ClaimResponse:
       type: object
       properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-    Claimant:
-      type: object
-      properties:
-        name:
-          type: string
-        contact_email:
-          type: string
-          format: email
-        contact_phone:
-          type: string
+        data:
+          $ref: '#/components/schemas/Claim'
     ErrorResponse:
       type: object
       properties:
@@ -302,6 +302,12 @@ components:
           items:
             type: string
   responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Bad request - invalid input data
       content:
@@ -310,12 +316,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     UnprocessableEntity:
       description: Unprocessable entity - validation errors
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing credentials
       content:
         application/json:
           schema:
