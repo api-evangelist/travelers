@@ -78,20 +78,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PolicyListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Policy'
-        total:
-          type: integer
-    PolicyResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Policy'
     ErrorResponse:
       type: object
       properties:
@@ -139,15 +125,29 @@ components:
                 type: number
               deductible:
                 type: number
+    PolicyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Policy'
+    PolicyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        total:
+          type: integer
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Unauthorized - invalid or missing credentials
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing credentials
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

@@ -66,6 +66,61 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+    QuoteRequest:
+      type: object
+      required:
+      - product_type
+      - business_info
+      properties:
+        product_type:
+          type: string
+          enum:
+          - business-owners-policy
+          - workers-compensation
+        business_info:
+          $ref: '#/components/schemas/BusinessInfo'
+        effective_date:
+          type: string
+          format: date
+        coverage_options:
+          type: object
+          additionalProperties: true
+    QuoteResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Quote'
+    BusinessInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        industry_code:
+          type: string
+        annual_revenue:
+          type: number
+          format: float
+        employee_count:
+          type: integer
     Quote:
       type: object
       properties:
@@ -102,61 +157,6 @@ components:
         created_at:
           type: string
           format: date-time
-    BusinessInfo:
-      type: object
-      properties:
-        name:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        industry_code:
-          type: string
-        annual_revenue:
-          type: number
-          format: float
-        employee_count:
-          type: integer
-    QuoteResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Quote'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
-    QuoteRequest:
-      type: object
-      required:
-      - product_type
-      - business_info
-      properties:
-        product_type:
-          type: string
-          enum:
-          - business-owners-policy
-          - workers-compensation
-        business_info:
-          $ref: '#/components/schemas/BusinessInfo'
-        effective_date:
-          type: string
-          format: date
-        coverage_options:
-          type: object
-          additionalProperties: true
   responses:
     BadRequest:
       description: Bad request - invalid input data
