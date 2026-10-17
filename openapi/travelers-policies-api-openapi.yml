@@ -77,7 +77,25 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    PolicyResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Policy'
     ErrorResponse:
       type: object
       properties:
@@ -125,11 +143,6 @@ components:
                 type: number
               deductible:
                 type: number
-    PolicyResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Policy'
     PolicyListResponse:
       type: object
       properties:
@@ -139,19 +152,6 @@ components:
             $ref: '#/components/schemas/Policy'
         total:
           type: integer
-  responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2

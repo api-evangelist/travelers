@@ -169,28 +169,70 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid input data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: string
-        details:
-          type: array
-          items:
-            type: string
-    Adjuster:
+    Claimant:
       type: object
       properties:
         name:
           type: string
-        email:
+        contact_email:
           type: string
           format: email
-        phone:
+        contact_phone:
           type: string
+    DocumentResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            document_type:
+              type: string
+            filename:
+              type: string
+            uploaded_at:
+              type: string
+              format: date-time
+    ClaimListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Claim'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
     Claim:
       type: object
       properties:
@@ -222,6 +264,32 @@ components:
         total_incurred:
           type: number
           format: float
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+    Adjuster:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+    ClaimResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Claim'
     ClaimRequest:
       type: object
       required:
@@ -258,74 +326,6 @@ components:
               type: string
         claimant:
           $ref: '#/components/schemas/Claimant'
-    DocumentResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            document_type:
-              type: string
-            filename:
-              type: string
-            uploaded_at:
-              type: string
-              format: date-time
-    ClaimResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Claim'
-    Claimant:
-      type: object
-      properties:
-        name:
-          type: string
-        contact_email:
-          type: string
-          format: email
-        contact_phone:
-          type: string
-    ClaimListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Claim'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-  responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid input data
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation errors
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2
