@@ -35,6 +35,25 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/travelers.png
 tags:
   - Insurance
+  - Property and Casualty
+  - Commercial Insurance
+  - Claims
+  - Fintech
+  - Fortune 500
+  - Agency Distribution
+  - Auto Insurance
+  - Bond and Specialty
+  - Business Insurance
+  - Cyber Insurance
+  - Dow Jones Industrial Average
+  - Homeowners
+  - Personal Insurance
+  - Risk Management
+  - Surety
+  - Telematics
+  - Workers Compensation
+tags_raw:
+  - Insurance
   - Property Casualty
   - Commercial Insurance
   - Claims
