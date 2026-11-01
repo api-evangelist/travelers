@@ -1,4 +1,4 @@
-# Travelers (travelers)
+# Travelers
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,70 +66,163 @@
 
 Travelers is one of the largest property casualty insurance companies in the United States and a Fortune 500 company. Through their developer portal, Travelers provides APIs for business insurance claim reporting, commercial quoting, and policy management to enable agents, brokers, and partners to programmatically manage insurance workflows.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/travelers/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/travelers/refs/heads/main/apis.yml)
+**Areas:** Insurance · Property and Casualty · Commercial Insurance · Claims · Fintech · Fortune 500 · Agency Distribution · Auto Insurance · Bond and Specialty · Business Insurance · Cyber Insurance · Dow Jones Industrial Average
 
-## Scope
+## Travelers on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Travelers is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/travelers/](https://apis.io/providers/travelers/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Insurance
-- Property Casualty
-- Commercial Insurance
-- Claims
-- Fintech
-- Fortune 500
+- [Travelers Claims API](https://apis.io/apis/travelers/travelers-claims-api/) — Business insurance claim reporting and management
+- [Travelers Policies API](https://apis.io/apis/travelers/travelers-policies-api/) — Policy information and management
+- [Travelers Quoting API](https://apis.io/apis/travelers/travelers-quoting-api/) — Commercial insurance quoting and policy pricing
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-03
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Travelers API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Business insurance APIs for claim reporting, commercial lines quoting, and policy management. Enables agents, brokers, and commercial clients to programmatically manage insurance workflows across property, casualty, workers compensation, and commercial auto lines.
+- [Travelers Agentic Access](https://apis.io/agentic-access/travelers/travelers-agentic-access/)
 
-- **Human URL:** [https://developer.travelers.com/s/](https://developer.travelers.com/s/)
-- **Base URL:** `https://api.travelers.com/v1`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Insurance
-- Property Casualty
-- Commercial Insurance
-- Claims
-- Quoting
-- Fortune 500
+- [Travelers Insurance Claim](https://apis.io/schemas/travelers/travelers-claim/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://developer.travelers.com/s/apis)
-- [OpenAPI](openapi/travelers-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/travelers.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/travelers.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/travelers-claim-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/travelers-claim-structure.json)
-- [JSON-LD](json-ld/travelers-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/travelers-rules.yml)
-- [Vocabulary](vocabulary/travelers-vocabulary.yml)
-- [Sign Up](https://developer.travelers.com/s/)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Travelers Claim Structure](https://apis.io/json-structure/travelers/travelers-claim-structure/)
 
-- [GitHub Organization](https://github.com/Travelers)
-- [LinkedIn](https://www.linkedin.com/company/travelers)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Travelers Context](https://apis.io/jsonld/travelers/travelers-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Travelers Vocabulary](https://apis.io/vocabularies/travelers/travelers-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Travelers Report Claim Example](https://apis.io/examples/travelers/travelers-report-claim-example/)
+- [Travelers Request Quote Example](https://apis.io/examples/travelers/travelers-request-quote-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Travelers API](https://apis.io/collections/travelers/open-travelers/)
+- [Travelers Claims API](https://apis.io/collections/travelers/open-travelers-claims-api/)
+- [Travelers Claims Policies API](https://apis.io/collections/travelers/open-travelers-policies-api/)
+- [Travelers Claims Quoting API](https://apis.io/collections/travelers/open-travelers-quoting-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Travelers — jsonschema rules](https://apis.io/rules/travelers/travelers-jsonschema-spectral-rules/)
+- [Travelers API Rules](https://apis.io/rules/travelers/travelers-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Travelers Authentication](https://apis.io/security/travelers/travelers-authentication/)
+- [Travelers Domain Security](https://apis.io/security/travelers/travelers-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Travelers Scopes](https://apis.io/scopes/travelers/travelers-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Travelers Plans Pricing](https://apis.io/plans/travelers/travelers-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Travelers Rate Limits](https://apis.io/rate-limits/travelers/travelers-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Travelers Finops](https://apis.io/finops/travelers/travelers-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.travelers.com/)
-- [Developer  Portal](https://developer.travelers.com/s/)
 - [Documentation](https://developer.travelers.com/s/apis)
-- [Sign Up](https://developer.travelers.com/s/)
-- [Integrations](https://piaffinity.travelers.com/affinity/sponsor/partners)
+- [GitHub](https://github.com/Travelers)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 60.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.8** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/travelers/](https://apis.io/providers/travelers/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Travelers: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/travelers/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
